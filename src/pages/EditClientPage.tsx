@@ -1,16 +1,12 @@
 import { useEffect, useState } from 'react';
 import {
-  IonBackButton,
   IonButton,
-  IonButtons,
   IonContent,
-  IonHeader,
   IonInput,
   IonPage,
-  IonTitle,
-  IonToolbar,
 } from '@ionic/react';
 import { useNavigate, useParams } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 import { Client } from '../interfaces/Client';
 import { ClientsService } from '../services/ClientsService';
 
@@ -31,14 +27,7 @@ const EditClientPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton defaultHref="/clients" />
-          </IonButtons>
-          <IonTitle>Editar cliente</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <NavBar title="Editar cliente" />
       <IonContent className="ion-padding">
         <IonInput
           label="Nombre"

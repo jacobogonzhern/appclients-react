@@ -3,6 +3,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Navigate, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import AboutPage from './pages/AboutPage';
 import ClientsPage from './pages/ClientsPage';
 import NewClientPage from './pages/NewClientPage';
 import EditClientPage from './pages/EditClientPage';
@@ -46,6 +47,7 @@ const App: React.FC = () => (
         <Route path="/clients" element={<ClientsPage />} />
         <Route path="/clients/new" element={<NewClientPage />} />
         <Route path="/clients/edit/:id" element={<EditClientPage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/" element={<Navigate to="/clients" replace />} />
       </IonRouterOutlet>
     </IonReactRouter>

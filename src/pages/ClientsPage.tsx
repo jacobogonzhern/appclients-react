@@ -1,18 +1,8 @@
 import { useEffect, useState } from 'react';
-import {
-  IonButton,
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-} from '@ionic/react';
-import { add, create, trash } from 'ionicons/icons';
+import { IonButton, IonContent, IonIcon, IonPage } from '@ionic/react';
+import { create, trash } from 'ionicons/icons';
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 import { Client } from '../interfaces/Client';
 import { ClientsService } from '../services/ClientsService';
 
@@ -39,31 +29,37 @@ const ClientsPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Clientes</IonTitle>
-          <IonButton slot="end" fill="clear" onClick={() => navigate('/clients/new')}>
-            <IonIcon icon={add} />
-          </IonButton>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent>
-        <IonList>
-          {clients.map((c) => (
-            <IonItem key={c.id}>
-              <IonLabel>
-                <h2>{c.name}</h2>
-                <p>{c.email}</p>
-              </IonLabel>
-              <IonButton fill="clear" onClick={() => navigate(`/clients/edit/${c.id}`)}>
-                <IonIcon icon={create} />
-              </IonButton>
-              <IonButton fill="clear" color="danger" onClick={() => handleDelete(c.id!)}>
-                <IonIcon icon={trash} />
-              </IonButton>
-            </IonItem>
-          ))}
-        </IonList>
+      <NavBar title="Clientes" />
+      <IonContent className="ion-padding">
+        <table className="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Teléfono</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {clients.map((c) => (
+              <tr key={c.id}>
+                <td>{c.id}</td>
+                <td>{c.name}</td>
+                <td>{c.email}</td>
+                <td>{c.phone}</td>
+                <td>
+                  <IonButton fill="clear" onClick={() => navigate(`/clients/edit/${c.id}`)}>
+                    <IonIcon icon={create} />
+                  </IonButton>
+                  <IonButton fill="clear" color="danger" onClick={() => handleDelete(c.id!)}>
+                    <IonIcon icon={trash} />
+                  </IonButton>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </IonContent>
     </IonPage>
   );
